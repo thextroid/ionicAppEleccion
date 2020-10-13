@@ -1,0 +1,30 @@
+<ion-content [fullscreen]="true">
+  <div class="logo-img">
+    <img  src="../../assets/img/brand/logo-3.svg"/>
+
+  </div>
+  <form (ngSubmit)="login()" [formGroup]="credentials">
+    <ion-text color="light">
+      <h1 class="title">AUTENTIFICACIÓN</h1>
+    </ion-text>
+    <div class="input-group login-form">
+      <ion-item class="item-native">
+        <ion-input type="text" placeholder="Usuario"  formControlName="usuario"></ion-input>
+      </ion-item>
+      
+      <ion-item class="item-native">
+        <ion-input type="password" placeholder="Password"  formControlName="password"></ion-input>
+      </ion-item>
+    
+    </div>
+ 
+    <ion-button type="submit" expand="block" [disabled]="!credentials.valid" >Ingresar</ion-button>
+ 
+  </form>
+</ion-content>
+<!-- <ion-text color="secondary">
+  <h1>H1: Autentificación</h1>
+</ion-text>
+<ion-avatar>
+  <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+</ion-avatar> -->

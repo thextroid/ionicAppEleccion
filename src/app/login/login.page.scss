@@ -1,0 +1,43 @@
+ion-content {
+    --padding-top: 10%;
+    --padding-start: 10%;
+    --padding-end: 10%;
+    // --background: url('https://images.unsplash.com/photo-1536431311719-398b6704d4cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80') 0 0/100% 100% no-repeat;
+    --background: #303F9F;
+    
+}
+ion-item{
+    --background:white;
+}
+ion-input{
+    font-size: 15px !important;
+    letter-spacing: 1px !important;
+}
+.login-form .native-input.sc-ion-input-md{
+    text-align: center !important;
+  }
+  .login-form {
+      background: transparent !important;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 10px;
+  }
+  .item-native{
+      background: #ffffffc7 !important;
+  }
+
+  
+  .logo-img{
+    text-align: center;
+      width: 80px;
+      margin: 0px auto;
+      margin-bottom: 25px;
+  }
+  h1.title{
+      letter-spacing: 3px !important;
+      /* font-family: "Raleway"; */
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 19px !important;
+      font-weight: 300 !important;
+  }

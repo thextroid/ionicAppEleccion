@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-toolbar color="tertiary">
+      <ion-title>Recintos</ion-title>
+    </ion-toolbar>
+  </ion-toolbar>
+</ion-header> 
+<ion-content class="">
+  <ion-header slot="">
+    <ion-toolbar color="tertiary" >
+      <ion-searchbar color="tertiary"  debounce="0" enterkeyhint="enter"(ionChange)="filtrar($event)" clearIcon="close-circle" showCancelButton="always"></ion-searchbar>
+    </ion-toolbar>
+  </ion-header>
+      <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content
+          pullingIcon="chevron-down-circle-outline"
+          pullingText="Deslice para actulizar"
+          refreshingSpinner="circles"
+          refreshingText="Actualizando...">
+        </ion-refresher-content>
+      </ion-refresher>
+
+  <ion-list >
+    <!-- <ion-button routerLink="/menu/mesas" routerDirection="root">ir mesas</ion-button> -->
+    <ion-item-sliding *ngFor="let item of recs;let i=index">
+      <ion-item button (click)="goMesas(item)" >
+        <ion-icon color="danger" name="location"></ion-icon>
+        <ion-label>
+          <h4>{{item.institucion}}</h4>
+          <p><i>Localidad:</i> {{item.localidad}}         </p>
+        </ion-label>
+        <ion-note slot="end" color="primary" class="right">{{item.totalHabilitados}} <br>
+          Habilitados
+        </ion-note>
+      </ion-item>
+      <ion-item-options>
+        <ion-item-option color="secondary">
+          <ion-icon slot="start" name="archive"></ion-icon>
+          Ver
+        </ion-item-option>
+        <ion-item-option color="light">
+          <ion-icon slot="end" ios="lock-closed" md="lock-closed-outline"></ion-icon>
+          Aperturar
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

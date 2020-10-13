@@ -1,0 +1,25 @@
+<ng-content></ng-content>
+<ion-footer [hidden]="hideWizard">
+  <div class="ion-wizard-footer">
+    <!--Back Button-->
+    <ion-fab  *ngIf="!isOnFirstStep()" vertical="bottom" horizontal="start">
+      <ion-fab-button (click)="back()">
+        <ion-icon name="arrow-forward-circle"></ion-icon> dd
+      </ion-fab-button>
+    </ion-fab>
+    <!--Steps count-->   
+    <ion-badge *ngIf="showSteps">{{step}} / {{steps}}</ion-badge>
+    <!--Next Button-->
+    <ion-fab  *ngIf="(!isOnFinalStep() && getCondition())" horizontal="end" vertical="bottom">
+      <ion-fab-button  (click)="next()">
+        <ion-icon name="arrow-round-forward"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+    <!--Finish Button-->
+    <ion-fab  *ngIf="(isOnFinalStep() && getCondition())" horizontal="end" vertical="bottom">
+      <ion-fab-button  (click)="finish.emit(step + 1)">
+        <ion-icon name="finishIcon"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </div>
+</ion-footer>

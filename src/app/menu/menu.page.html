@@ -1,0 +1,24 @@
+
+  <ion-menu contentId="content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    
+    <ion-content>
+      <ion-list>
+        <ion-menu-toggle auto-hide="false" *ngFor="let p of pages">
+          <ion-item [routerLink]="p.enlace" routerDirection="root" [class.active-item]="selectPath.startsWith(p.enlace)">
+            <ion-label>{{p.title}}</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-item tappable [routerLink]="'/login'" routerDirection="root">
+          <ion-icon name="log-out" slot="start"></ion-icon>
+          <ion-label>Salir</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="content" ></ion-router-outlet>
+

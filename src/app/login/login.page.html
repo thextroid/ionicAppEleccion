@@ -1,0 +1,34 @@
+<ion-content [fullscreen]="true">
+  <div class="logo-img">
+    <img  src="../../assets/img/brand/logo-3.svg"/>
+  </div>
+  <ion-text color="light">
+    <h1 class="title">ACCESO</h1>
+  </ion-text>
+  <form (ngSubmit)="login()" [formGroup]="credentials">
+    <div class="input-group login-form">
+      <ion-item class="item-native">
+        <ion-label>
+          <ion-icon name="person-outline"></ion-icon>
+        </ion-label>
+        <ion-input type="text" placeholder="Usuario"  formControlName="usuario"></ion-input>
+      </ion-item>
+      <ion-item class="item-native">
+        <ion-label>
+          <ion-icon name="key-outline"></ion-icon>
+        </ion-label>
+        <ion-input type="password" placeholder="Password"  formControlName="password"></ion-input>
+      </ion-item>
+    </div>
+     
+    <ion-button type="submit" expand="block" [disabled]="!credentials.valid" >Ingresar</ion-button>
+  </form>
+</ion-content>
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="default"
+  color="#fff"
+  type="ball-pulse-sync"
+>
+  <p style="font-size: 20px; color: white">Autentificando...</p>
+</ngx-spinner>

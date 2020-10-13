@@ -1,0 +1,92 @@
+
+
+<ion-app>
+  <ion-split-pane contentId="main-content">
+     <ion-menu side="start" content-id="main-content">
+      <ion-header>
+        <ion-toolbar translucent>
+          <ion-title>Menu</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-list>
+          <ion-menu-toggle auto-hide="false" >
+            <ion-item   [routerLink]="recintos" lines="none"
+              detail="false" >
+              <ion-icon slot="start" name="arrow-forward-circle-outline" ></ion-icon>
+              <ion-label>Recintos</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle auto-hide="false" >
+            <ion-item   [routerLink]="mesas" lines="none"
+              detail="false" >
+              <ion-icon slot="start" name="arrow-forward-circle-outline" ></ion-icon>
+              <ion-label>Mesas</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-item   [routerLink]="'recintos'">
+            <ion-icon name="mail" slot="start"></ion-icon>
+            <ion-label>Recintos</ion-label>
+          </ion-item>
+          <ion-item  [routerLink]="'mesas'">
+            <ion-icon name="mail"  slot="start"></ion-icon>
+            <ion-label>Mesas</ion-label>
+          </ion-item>
+          <ion-item button (click)="logout()">
+            <ion-icon  name="warning"  slot="start"></ion-icon>
+            <ion-label>Salir</ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+
+    <div class="ion-page" id="main-content">
+      <ion-router-outlet></ion-router-outlet>
+        <!-- <button mat-raised-button color="primary" (click)="isLinear = !isLinear" id="toggle-linear">
+          {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
+        </button> -->
+        <!-- <mat-horizontal-stepper [linear]="isLinear" #stepper>
+          <mat-step [stepControl]="firstFormGroup">
+            <form [formGroup]="firstFormGroup">
+              <ng-template matStepLabel>Fill out your name</ng-template>
+              <mat-form-field>
+                <mat-label>Name</mat-label>
+                <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+              </mat-form-field>
+              <div>
+                <button mat-button color="primary"matStepperNext>Next</button>
+                <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="next(stepper)">
+                  <ion-fab-button >
+                    <ion-icon name="arrow-forward-outline"></ion-icon>
+                  </ion-fab-button>
+                </ion-fab>
+              </div>
+            </form>
+          </mat-step>
+          <mat-step [stepControl]="secondFormGroup">
+            <form [formGroup]="secondFormGroup">
+              <ng-template matStepLabel>Fill out your address</ng-template>
+              <mat-form-field>
+                <mat-label>Address</mat-label>
+                <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+                       required>
+              </mat-form-field>
+              <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+              </div>
+            </form>
+          </mat-step>
+          <mat-step>
+            <ng-template matStepLabel>Done</ng-template>
+            <p>You are now done.</p>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button (click)="stepper.reset()">Reset</button>
+            </div>
+          </mat-step>
+        </mat-horizontal-stepper> -->
+      
+    </div>
+  </ion-split-pane>
+</ion-app>

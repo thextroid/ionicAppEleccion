@@ -24,3 +24,21 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+ion-simple-wizard {
+    :host {
+      display: flex;
+      flex-direction: column;
+
+    }
+    .ion-wizard-footer {
+     position: fixed;
+     transform: translate3d(0, 0, 0);
+     -webkit-transform: translate3d(0, 0, 0);
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    display: block;
+    width: 100%;
+    text-align: center;
+    }
+}
