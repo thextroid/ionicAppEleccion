@@ -41,6 +41,7 @@ export class LoginPage implements OnInit {
     this.authService.login(this.credentials.value).subscribe(
       async (res)=>{
         console.log(res);
+        this.router.navigateByUrl('/menu/recintos', { replaceUrl: true });
         this.authService.getUserToken().subscribe(
           (res2)=>{
             console.log(res2);

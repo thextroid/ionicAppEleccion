@@ -1,0 +1,48 @@
+ion-item::part(native) { 
+    background:rgb(226, 226, 226) !important;
+  }
+  .vote ion-item::part(native) { 
+    background:white !important;
+    font-size: x-large;
+    font-weight: 700;
+    color: #3F51B5;
+  }
+.login-form .native-input.sc-ion-input-md{
+    text-align: center !important;
+  }
+  .login-form {
+      background: transparent !important;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+    .control-vote {
+      text-align: center !important;
+      font-size:16px;
+      background: transparent !important;
+      border-radius: 10px;
+      border:2px solid #3f51b5;
+      overflow: hidden;
+      margin-bottom: 10px;
+  }
+  ion-text h2 {
+    letter-spacing: normal;
+    margin-bottom: 0px !important;
+    letter-spacing: 1px;
+    color: #3F51B5;
+    font-weight: 700;
+}
+.grid-vote ion-row.item-row{
+  margin-bottom: 15px;
+  border: 1px solid #3f51b5;
+    border-radius: 5px;
+    background: #ececec;
+}
+.error{
+  font-size: small;
+    color: #fff;
+    background: var(--ion-color-danger) !important;
+    padding-left: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}

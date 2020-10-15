@@ -31,7 +31,10 @@ export class MesasComponent implements OnInit {
     );
    }
 
-  ngOnInit() {}
+  ngOnInit() {
+    localStorage.removeItem('recinto');
+    localStorage.removeItem('mesa');
+  }
   setupMesas(){
     this.$rec.getMesasCargadas(this.datarec._id).subscribe(
       (res)=>{
@@ -76,7 +79,7 @@ export class MesasComponent implements OnInit {
                 const renderdata=data.delegado.replace(/( )+/g,' ').trim();
                 this.$rec.aperturarMesa(this.datarec._id,{
                   estado:"Aperturado",
-                  delegado:(renderdata.length>0?renderdata:"false"),
+                  delegado:(renderdata.length>0?"true":"false"),
                   mesa:idmesa
                 }).subscribe(
                   (res)=>{
@@ -91,11 +94,9 @@ export class MesasComponent implements OnInit {
                     }
                   },
                   (error)=>{
-
+                    console.log(error);
                   }
                 )
-                
-                
                 console.log(data.delegado.replace(/( )+/g,' ').trim().length>0?"asignado":"no asignado");
               }
             }
@@ -103,6 +104,22 @@ export class MesasComponent implements OnInit {
         });
         await alert.present();
         
+  }
+  goVotacion(m){
+    if(m.estado!=="Sin Aperturar"){
+
+      const nro=m.mesa;
+      console.log(nro);
+      const url=`/menu/recintos/mesas/${nro}/votaciones`;
+
+      localStorage.setItem('recinto',JSON.stringify(this.datarec));
+      localStorage.setItem('mesa',JSON.stringify(this.datarec.mesas.find( (item)=> item.mesa==1 )));
+      this.router.navigateByUrl(url);
+
+    }
+    else{
+
+    }
   }
 
 }

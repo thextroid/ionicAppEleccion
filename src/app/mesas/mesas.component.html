@@ -10,37 +10,37 @@
 </ion-header> 
 <ion-content class="">
   <ion-list>
-        <ion-item-sliding #slidingItem *ngFor="let i of datarec.mesas" >
-          <ion-item button >
-            <ion-icon name="finger-print"></ion-icon>
-              <ion-label >
-                <ion-text color="primary">
-                  <h3>Mesa {{i.mesa}}
-                    <span *ngIf="i.status==='Verificado'" class="tag-primary">{{i.status}}</span>
-                    <span *ngIf="i.status==='Enviado'" class="tag-warning">{{i.status}}</span>
-                    <span *ngIf="i.status==='Anulado'" class="tag-danger">{{i.status}}</span>
-                    <span *ngIf="!i.status" class="tag-disabled">Sin enviar</span>
-                  </h3>
-                  <p>
-                    <b *ngIf="i.estado!='Sin Aperturar'" style="color:green">{{i.estado}}</b>
-                    <i *ngIf="i.estado=='Sin Aperturar'" >{{i.estado}}</i>
-                  </p>
-                </ion-text>
-             </ion-label>
-             <ion-note slot="end" color="primary" class="right">{{i.habilitados}} <br>
-              Habilitados
-            </ion-note>
-          </ion-item>
-          <ion-item-options side="end">
-            <ion-item-option color="primary">
-              <ion-icon name="information-circle"></ion-icon>
-            </ion-item-option>
-            <ion-item-option (click)="aperturar(i.mesa,slidingItem)" *ngIf="i.estado=='Sin Aperturar'" color="warning">
-              <ion-icon slot="end" ios="lock-closed" md="lock-closed-outline"></ion-icon>
-              Aperturar
-            </ion-item-option>
-          </ion-item-options>
-        </ion-item-sliding>
+    <ion-item-sliding #slidingItem *ngFor="let i of datarec.mesas" >
+      <ion-item button (click)="goVotacion(i)">
+        <ion-icon name="finger-print"></ion-icon>
+          <ion-label >
+            <ion-text color="primary">
+              <h3>Mesa {{i.mesa}}
+                <span *ngIf="i.status==='Verificado'" class="tag-primary">{{i.status}}</span>
+                <span *ngIf="i.status==='Enviado'" class="tag-warning">{{i.status}}</span>
+                <span *ngIf="i.status==='Anulado'" class="tag-danger">{{i.status}}</span>
+                <span *ngIf="!i.status" class="tag-disabled">Sin enviar</span>
+              </h3>
+              <p>
+                <b *ngIf="i.estado!='Sin Aperturar'" style="color:green">{{i.estado}}</b>
+                <i *ngIf="i.estado=='Sin Aperturar'" >{{i.estado}}</i>
+              </p>
+            </ion-text>
+          </ion-label>
+          <ion-note slot="end" color="primary" class="right">{{i.habilitados}} <br>
+          Habilitados
+        </ion-note>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option color="primary">
+          <ion-icon name="information-circle"></ion-icon>
+        </ion-item-option>
+        <ion-item-option (click)="aperturar(i.mesa,slidingItem)" *ngIf="i.estado=='Sin Aperturar'" color="warning">
+          <ion-icon slot="end" ios="lock-closed" md="lock-closed-outline"></ion-icon>
+          Aperturar
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
      
     
   </ion-list>

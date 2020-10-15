@@ -18,6 +18,6 @@ export class RecintosService {
     return this.http.get<any>(`${this.api}/votacion/recinto/${idrec}`);
   }
   aperturarMesa(idrec,data){
-    return this.http.put<any>(`${this.api}/recinto/${idrec}/mesa`,data);
+    return this.http.put<any>(`${this.api}/recintos/${idrec}/mesa`,data);
   }
 }

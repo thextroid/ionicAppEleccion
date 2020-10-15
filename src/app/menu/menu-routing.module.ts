@@ -17,6 +17,11 @@ const routes: Routes = [
         path:'recintos/mesas',
         loadChildren: () =>
           import("../mesas/mesas.module").then((m) => m.MesasModule)
+      },
+      {
+        path:'recintos/mesas/:id/votaciones',
+        loadChildren: () =>
+          import("../votaciones/votaciones.module").then((m) => m.VotacionesPageModule)
       }
     ]
   }

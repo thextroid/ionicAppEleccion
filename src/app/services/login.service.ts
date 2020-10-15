@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map, tap, switchMap } from 'rxjs/operators';
 import { BehaviorSubject, from, Observable, Subject } from 'rxjs';
+import * as jwt_decode from 'jwt-decode';
+import { JwtHelperService } from '@auth0/angular-jwt';
  
 import { Plugins } from '@capacitor/core';
 const { Storage } = Plugins;
@@ -45,7 +47,16 @@ export class LoginService {
     )
   }
   getUserToken(): Observable<any> {
-    return this.http.post(`${this.api}/me`,{});
+    const helper = new JwtHelperService();
+    const options={
+      headers: new HttpHeaders({
+        'Content-Type':'application/json',
+        Authorization:'authjwt='+this.token
+      })
+    }
+    const decoded= helper.decodeToken(this.token);
+    console.log(decoded);
+    return this.http.get(`http://192.81.217.7/api/users/`+decoded._id,options);
   }
  
   logout(): Promise<void> {

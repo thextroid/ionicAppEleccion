@@ -24,6 +24,10 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'votaciones',
+    loadChildren: () => import('./votaciones/votaciones.module').then( m => m.VotacionesPageModule)
   }
 ];
 

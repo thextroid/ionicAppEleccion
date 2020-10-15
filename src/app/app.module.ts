@@ -24,12 +24,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { LoginService } from './services/login.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxSpinnerModule } from 'ngx-spinner';
 import { IonSimpleWizard } from './ion-simple-conditional-wizard/ion-simple-wizard.component';
 import { IonSimpleWizardStep } from './ion-simple-conditional-wizard/ion-simple-wizard.step.component';
 import { customTransition } from './shared';
 import { RecintosService } from './services/recintos.service';
-import { MesasComponent } from './mesas/mesas.component';
-import { RecintosComponent } from './recintos/recintos.component';
 import { LoginPage } from './login/login.page';
 import { IndexComponent } from './index/index.component';
 import { MenuPage } from './menu/menu.page';
@@ -60,7 +59,7 @@ import { MenuPage } from './menu/menu.page';
     IonicModule.forRoot({
       navAnimation:customTransition
     }),
-    
+    NgxSpinnerModule,
     AppRoutingModule,
     
   ],
@@ -71,7 +70,7 @@ import { MenuPage } from './menu/menu.page';
     RecintosService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
-  
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
