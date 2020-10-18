@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class RecintosService {
 
-  api="http://192.81.217.7/api";
+  api="https://www.controlelectoralcctarija.com/api";
   constructor(private http: HttpClient) {
     
   }

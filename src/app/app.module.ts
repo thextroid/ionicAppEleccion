@@ -17,7 +17,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 import {MatBadgeModule} from '@angular/material/badge';
-
+import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
 
 
@@ -55,6 +55,7 @@ import { MenuPage } from './menu/menu.page';
     MatBadgeModule,
     MatSelectModule,
     MatStepperModule,
+    MatSnackBarModule,
     BrowserAnimationsModule,
     IonicModule.forRoot({
       navAnimation:customTransition

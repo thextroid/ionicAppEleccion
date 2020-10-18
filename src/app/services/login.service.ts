@@ -13,13 +13,10 @@ const TOKEN_KEY = 'my-token';
   providedIn: 'root'
 })
 export class LoginService {
-  api="http://192.81.217.7/api/auth";
+  api="https://www.controlelectoralcctarija.com/api/auth";
   constructor(private http: HttpClient) {
     this.loadToken();
   }
-  // login(data){
-  //   return this.http.post(this.api,data);
-  // }
   isAuthenticated: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(null);
   token = '';
  
@@ -54,13 +51,19 @@ export class LoginService {
         Authorization:'authjwt='+this.token
       })
     }
+    console.log(this.token);
+    
     const decoded= helper.decodeToken(this.token);
     console.log(decoded);
-    return this.http.get(`http://192.81.217.7/api/users/`+decoded._id,options);
+    return this.http.get(`https://www.controlelectoralcctarija.com/api/users/`+decoded._id,options);
   }
  
   logout(): Promise<void> {
     this.isAuthenticated.next(false);
     return Storage.remove({key: TOKEN_KEY});
+  }
+
+  logoutRemoveToke(){
+    return this.http.get(this.api);
   }
 }

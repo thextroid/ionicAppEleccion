@@ -2,18 +2,21 @@
   <ion-menu contentId="content">
     <ion-header>
       <ion-toolbar>
-        <ion-title>menu</ion-title>
+        <ion-title color="success">Control System</ion-title>
       </ion-toolbar>
     </ion-header>
     
     <ion-content>
       <ion-list>
+        <ion-item >
+          <ion-label><b>User:</b> {{user.fullName}}</ion-label>
+        </ion-item>
         <ion-menu-toggle auto-hide="false" *ngFor="let p of pages">
           <ion-item [routerLink]="p.enlace" routerDirection="root" [class.active-item]="selectPath.startsWith(p.enlace)">
             <ion-label>{{p.title}}</ion-label>
           </ion-item>
         </ion-menu-toggle>
-        <ion-item tappable [routerLink]="'/login'" routerDirection="root">
+        <ion-item tappable (click)="logout()" routerDirection="root">
           <ion-icon name="log-out" slot="start"></ion-icon>
           <ion-label>Salir</ion-label>
         </ion-item>

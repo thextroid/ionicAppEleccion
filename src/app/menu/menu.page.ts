@@ -12,23 +12,25 @@ export class MenuPage implements OnInit {
     {
       title:'Recintos',
       enlace:'/menu/recintos'
-    },
-    {
-      title:'Mesas',
-      enlace:'/menu/mesas'
     }
 
   ];
   selectPath='';
+  user;
+  cargo;
   constructor(private router:Router) {
     this.router.events.subscribe((event:RouterEvent)=>{
       if(event && event.url){
         this.selectPath=  event.url;
       }
     })
+    this.user=JSON.parse(localStorage.getItem('sesion'));
    }
 
   ngOnInit() {
   }
-
+  logout(){
+    localStorage.clear();
+    this.router.navigateByUrl('/login',{replaceUrl:true});
+  }
 }

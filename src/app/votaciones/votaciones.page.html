@@ -57,9 +57,9 @@
       <form [formGroup]="secondFormGroup" #form="ngForm" (ngSubmit)="validarVotos()">
         <ng-template matStepLabel>Votos</ng-template>
         <ion-grid class="center grid-vote" >
-          <ion-text color="danger">
+          <ion-text color="dark">
             <h3>{{datarec.institucion}}</h3>
-            <h4 color="tertiary">{{datarec.institucion}}</h4>
+            <h4 color="dark">Circunscripcion({{datarec.circunscripcion.name}}) / {{datarec.provincia.name}}</h4>
           </ion-text>
           <div class="grupo" formArrayName="candidatura" >
               
@@ -406,24 +406,95 @@
           <!-- <button mat-button (click)="p(form)">prueba</button> -->
           <button mat-flat-button type="submit" matStepperNext color="primary">Subir Votacion</button>
         </div>
-        <pre>
+        <!-- <pre>
           {{secondFormGroup.value | json}}
-        </pre>
+        </pre> -->
       </form>
     </mat-step>
     <mat-step>
-      <ng-template matStepLabel>Foto</ng-template>
-      <ion-button expand="full">
-        <ion-icon lazy="true" slot="start" name="image"></ion-icon>
-        <ion-label slot="end">Upload Image</ion-label>
-        <input type="file" (change)="loadImageFromDevice($event)" id="file-input"
-          accept="image/png, image/jpeg">
-      </ion-button>
+      <div class="hero is-fullheight">
+        <div class="hero-body">
+          <div class="container">
+            <div class="columns is-multiline">
+              <div class="column is-6 is-offset-3">
+                <div class="upload-box">
+                  <div class="upload-box-header">
+                    <div class="col-sm-12 header-title">
+                      <div class="row">
+                        
+                        <div class="col-6 col-md-4">
+                          
+                        </div>
+                        <div class="col-md-4 header-title text-center hidden-sm">
+                          <h2>Fotos</h2>
+                        </div>
+                        <div class="col-6 col-md-4 text-right">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="upload-box-content">
+                    <div class="drop-container" ngFileDrop [options]="options" (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput">
+                      <p class="text-center">
+                        
+                        <label class="upload-button" style="font-size:16px">
+                          <input type="file" mat-raised-button color="success" ngFileSelect [options]="options"  (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" accept="image/*" (change)="fileChangeEvent($event)"> 
+                          Arraste o haga click aquí <i class="fa fa-camera"></i> para cargar.
+                        </label>
+                        
+                      </p>
+                    </div>
+                    
+                    
+                    <div class="upload-item" *ngFor="let f of files; let i = index;">
+                      <div class="upload-item-content">
+                        <div class="filename row">
+                          <div class="filename-left col-11 col-md-11">
+                            <i class="ionicon ion-ios-copy"></i>
+                            <span>{{ f.name }}</span>
+                          </div>
+                          <div class="filename-right col-1 col-md-1">
+                            <i class="ionicon ion-close-round fa fa-remove" (click)="cancelUpload(f.id)"></i>
+                          </div>
+                        </div>
+                        <div class="progress-content">
+                          <div class="progress">
+                            <span class="bar" [style.width]="f?.progress?.data?.percentage + '%'" [class.is-done]="f?.progress?.data?.percentage === 100"></span>
+                          </div>
+                        </div>
+                        <div class="progress-text-content">
+                          <span class="progress-text" [class.is-done]="f?.progress?.data?.percentage === 100">
+                            <span>{{ f.progress?.data?.percentage }}% </span>
+                            <span *ngIf="f.progress?.data?.percentage !== 100">subiendo...</span>
+                            <span *ngIf="f.progress?.data?.percentage === 100">Listo</span>
+                          </span>
+                          <span class="speed-and-eta-text" *ngIf="f.progress?.data?.percentage !== 0 && f.progress?.data?.percentage !== 100">
+                            <span>{{ f.progress?.data?.speedHuman }} </span>
+                            <span>ETA {{ f.progress?.data?.etaHuman }}</span>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
       <div>
-        <button mat-raised-button color="primary"  matStepperPrevious>atras</button>
-        <button mat-flat-button color="primary"  (click)="upload()">Finalizar</button>
+        <button mat-flat-button color="primary" [disabled]="finish" (click)="upload(stepper)">Enviar Datos</button>
       </div>
     </mat-step>
+    <ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+>
+  <p style="font-size: 20px; color: white">Subiendo datos del Acta...</p>
+</ngx-spinner>
   </mat-horizontal-stepper>
       
 </ion-content>

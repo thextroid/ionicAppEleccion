@@ -1,6 +1,6 @@
 {
     "/api/*": {
-        "target": "http://192.81.217.7",
+        "target": "https://www.controlelectoralcctarija.com",
         "secure": false,
         "logLevel": "debug"
     }

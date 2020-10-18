@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController, IonItemSliding, LoadingController } from '@ionic/angular';
 import { RecintosService } from '../services/recintos.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-mesas',
@@ -16,6 +17,7 @@ export class MesasComponent implements OnInit {
     private actroute:ActivatedRoute,
     private router:Router,
     private $rec:RecintosService,
+    private _snackBar: MatSnackBar,
     private alert:AlertController,
     private load:LoadingController,
     private spinner: NgxSpinnerService
@@ -32,8 +34,8 @@ export class MesasComponent implements OnInit {
    }
 
   ngOnInit() {
-    localStorage.removeItem('recinto');
-    localStorage.removeItem('mesa');
+    // localStorage.removeItem('recinto');
+    // localStorage.removeItem('mesa');
   }
   setupMesas(){
     this.$rec.getMesasCargadas(this.datarec._id).subscribe(
@@ -42,7 +44,8 @@ export class MesasComponent implements OnInit {
         if(res.length==0)return;
         for (let j = 0; j < this.datarec.mesas.length; j++) {
           for (let i = 0; i < res.length; i++) {
-            const xmesa=parseInt(res[i].substring(res[i].indexOf(" ")+1,res[i].length));
+            let xmesa=res[i].numeroMesa;
+            xmesa=parseInt(xmesa.substring(xmesa.indexOf(" ")+1,xmesa.length));
             if(xmesa==this.datarec.mesas[j].mesa){
               this.datarec.mesas[j].status=res[i].estado;
               break;
@@ -53,7 +56,7 @@ export class MesasComponent implements OnInit {
     )
   }
   async aperturar(idmesa,sliding?:IonItemSliding) {
-      
+        
         const alert = await this.alert.create({
           header: 'Aperturacion de Mesa',
           // subHeader: 'Delegado',
@@ -97,7 +100,7 @@ export class MesasComponent implements OnInit {
                     console.log(error);
                   }
                 )
-                console.log(data.delegado.replace(/( )+/g,' ').trim().length>0?"asignado":"no asignado");
+                // console.log(data.delegado.replace(/( )+/g,' ').trim().length>0?"asignado":"no asignado");
               }
             }
           ]
@@ -106,20 +109,30 @@ export class MesasComponent implements OnInit {
         
   }
   goVotacion(m){
-    if(m.estado!=="Sin Aperturar"){
+    console.log(m);
+    console.log(this.datarec);
 
+    if(m.estado==="Aperturado" && !("status" in m) ){
       const nro=m.mesa;
       console.log(nro);
       const url=`/menu/recintos/mesas/${nro}/votaciones`;
-
       localStorage.setItem('recinto',JSON.stringify(this.datarec));
       localStorage.setItem('mesa',JSON.stringify(this.datarec.mesas.find( (item)=> item.mesa==1 )));
       this.router.navigateByUrl(url);
-
     }
-    else{
 
-    }
+    if(m.estado==="Sin Aperturar" )
+      this.mensaje('Se debe aperturar para subir votacion','Mesa '+m.mesa);
+      if(m.estado==="Aperturado" && m.status==="Enviado")
+        this.mensaje('la mesa ya fue enviada su votacion','Mesa '+m.mesa);
+      if(m.estado==="Aperturado" && m.status==="Verificado")
+        this.mensaje('la mesa ya fue verificada su votacion','Mesa '+m.mesa);
+      
+  }
+  mensaje(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
 }

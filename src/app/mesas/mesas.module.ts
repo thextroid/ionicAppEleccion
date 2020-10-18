@@ -5,6 +5,7 @@ import { MesasRoutingModule } from './mesas-routing.module';
 import { MesasComponent } from './mesas.component';
 import { IonicModule } from '@ionic/angular';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -12,6 +13,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
   imports: [
     CommonModule,
     IonicModule,
+    MatSnackBarModule,
     NgxSpinnerModule,
     MesasRoutingModule
   ],
